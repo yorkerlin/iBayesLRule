@@ -1,1 +1,1 @@
-# iBayesLRule-RGVI
+# iBayesLRule
