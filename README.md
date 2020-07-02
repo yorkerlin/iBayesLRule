@@ -1,7 +1,7 @@
 Code for ICML 2020 paper on [Handling the Positive-Definite Constraint in the Bayesian Learning Rule](https://arxiv.org/abs/2002.10060)
 
 * To-do List:
-  * To add [slides](https://github.com/yorkerlin/iBayesLRule/) of the talk.
+  * Added [slides](https://github.com/yorkerlin/iBayesLRule/slides.pdf) of the talk [done]
   * To add a Python [implementatoin](https://github.com/yorkerlin/iBayesLRule/) of the implicit reparameterization gradient for the inverse Gaussian distribution (See Appendix H of the paper)
   * To add a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/) for the examples using full Gaussian approximation (See Appendix E of the paper)
   * To add a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/) for the examples using MoG approximation (See Appendix J of the paper)
