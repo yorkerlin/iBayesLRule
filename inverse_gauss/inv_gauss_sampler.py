@@ -76,11 +76,16 @@ def mylog_exp1(x):
     tmp = np.cumsum( np.log(np.arange(int(x))+1) ) - (np.arange(int(x))+1)*np.log(x)
     neg = logsumexp(tmp[::2])  #odd index
     pos = logsumexp(tmp[1::2]) #even index
-    [res, sig] = logsubexp(pos, neg)
+    [res, sig] = logsubexp(pos, neg) #[to do] this statement can be improved
     if sig<0: assert (res<0)
     return np.log1p(np.exp(res)*sig)-x-np.log(x)
 
 def logsubexp(a,b):
+    # return
+    # log( exp(a) - exp(b) ) if sig=1 (a>b)
+    # log( -exp(a) + exp(b) ) if sig=-1 (a<b)
+    # can be not defined if sig=0 (a=b)
+
     assert(a.shape == b.shape)
     sig = np.sign(a-b)
     tmp =np.row_stack( ( np.reshape(a,-1), np.reshape(b,-1) ) )
