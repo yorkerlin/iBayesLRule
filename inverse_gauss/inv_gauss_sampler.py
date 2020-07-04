@@ -65,7 +65,7 @@ defvjp(myinv_gauss,
        myinv_gauss_beta_vjp)
 
 def mylog_exp1(x):
-    #a numerically stable version of the exponential integral.
+    #a numerically stable version of the log exponential integral.
     #see Appendix H.1 (page 27) of https://arxiv.org/pdf/2002.10060v8.pdf
     assert(x>0)
     if x<100:
