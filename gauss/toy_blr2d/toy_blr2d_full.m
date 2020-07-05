@@ -1,5 +1,5 @@
 addpath(genpath('.'))
-
+%full Gaussian cases
 clear all;
 % Set the variance of prior (alpha=1/lambda)
 alpha=100;
