@@ -110,7 +110,7 @@ gx = value_and_grad(fx)
 ginvx = value_and_grad(finv_x)
 gentropy = value_and_grad(fent_x)
 
-d = 500 #use d MC samples
+d = 500 #use d MC samples (set d to be large so that we can see the MC approximation gives unbaised estimation)
 print('Using %d MC samples'% d)
 alpha = 2.0*np.ones((d,1))
 beta = 4.0*np.ones((d,1))
