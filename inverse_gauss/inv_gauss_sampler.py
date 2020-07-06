@@ -110,7 +110,8 @@ gx = value_and_grad(fx)
 ginvx = value_and_grad(finv_x)
 gentropy = value_and_grad(fent_x)
 
-d = 5000000 #use d MC samples
+d = 500 #use d MC samples
+print('Using %d MC samples'% d)
 alpha = 2.0*np.ones((d,1))
 beta = 4.0*np.ones((d,1))
 
@@ -118,30 +119,32 @@ sampler = npr.RandomState(0)
 x = sampler.wald(mean=1.0/beta, scale=alpha)
 
 param =(alpha, beta)
-print('exact, estmation')
 
 print('===========')
-print('test 1')
+print('test case 1')
+print('name:, exact, MC_estmation')
 (res1, g1) = gx(param) # E[x] = 1/beta
-print (1.0/beta[0], res1/d)
-print( 0, np.mean(g1[0]) ) #grad_alpha
-print(-1.0/(beta[0]**2), np.mean(g1[1]) ) #grad_beta
+print ('E[x]=1/beta:', 1.0/beta[0], res1/d)
+print('d_E[x] / d_alpha:', 0, np.mean(g1[0]) ) #grad_alpha
+print('d_E[x] / d_beta:', -1.0/(beta[0]**2), np.mean(g1[1]) ) #grad_beta
 
 
 print('===========')
-print('test 2')
+print('test case 2')
+print('name:, exact, MC_estmation')
 (res2, g2) = ginvx(param) # E[1/x] = beta + 1/alpha
-print (beta[0]+1.0/alpha[0], res2/d)
-print( -1.0/(alpha[0]**2), np.mean(g2[0]) ) #grad_alpha
-print( 1.0, np.mean(g2[1]) ) #grad_beta
+print ('E[1/x]=beta+1/alpha:', beta[0]+1.0/alpha[0], res2/d)
+print('d_E[1/x] / d_alpha:', -1.0/(alpha[0]**2), np.mean(g2[0]) ) #grad_alpha
+print('d_E[1/x] / d_beta:', 1.0, np.mean(g2[1]) ) #grad_beta
 
 
 print('===========')
-print('test 3')
+print('test case 3')
+print('name:, exact, MC_estmation')
 (res3, g3) = gentropy(param) # E[-log q(x)] see Appendix H.1 (page 27) of https://arxiv.org/pdf/2002.10060v8.pdf
 # tmp_not_stable  = org_special.exp1(2.0*beta[0]*alpha[0])*np.exp(2.0*beta[0]*alpha[0]) #not stable when beta[0]*alpha[0]>360
 tmp = np.exp( mylog_exp1(2.0*beta[0]*alpha[0]) + 2.0*beta[0]*alpha[0])
-print (  (-np.log(alpha[0]) - (np.log(beta[0])+tmp)*3.0  + 1 + np.log(np.pi*2.0) ) /2.0 , res3/d)
-print( 1.0/(alpha[0])-beta[0]*tmp*3.0,  np.mean(g3[0])  ) #grad_alpha
-print( -( alpha[0]*tmp )*3.0,  np.mean(g3[1])  )   #grad_beta
+print ('entropy:',  (-np.log(alpha[0]) - (np.log(beta[0])+tmp)*3.0  + 1 + np.log(np.pi*2.0) ) /2.0 , res3/d)
+print('d_entropy / d_alpha:', 1.0/(alpha[0])-beta[0]*tmp*3.0,  np.mean(g3[0])  ) #grad_alpha
+print('d_entropy / d_beta:', -( alpha[0]*tmp )*3.0,  np.mean(g3[1])  )   #grad_beta
 
