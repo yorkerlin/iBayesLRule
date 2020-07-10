@@ -7,8 +7,7 @@ Code for ICML 2020 paper on [Handling the Positive-Definite Constraint in the Ba
   * Added a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/tree/master/gauss) about Gaussian approximation (See Appendix E) 
  ![](./plots/blr2d_full.png) 
   * To add a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/) about  MoG approximation (See Appendix J)
- ![](./plots/MOG.png) 
- 
+ ![](./plots/MOG.png) <br />  
  examples of GMM:
  [star](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/star.m) [double-banana] [laplace] [BNN] [mix of Studnet-Ts]
   * To add a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/) about Gamma approximation (See Appendix F)
