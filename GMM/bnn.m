@@ -69,13 +69,13 @@ for i=1:num_com
     disp(['Estimating approximation with ' int2str(trueC) ' components.'])
 
     %disp('iBayesLRule second order')
-    %method_name = 'iBayesLRule_hess_informative2d';
+    %method_name = 'iBayesLRule_hess_BNN';
     %option='hess';
     %[mixWeights,mixMeans,mixPrecs]=mix_gauss_iBayesLRule(option,likelihoodFun,trueC,nrSteps,init_m,init_P,floor(nrSteps/50), 30, 0.008, 0.05);
 
 
     disp('iBayesLRule first order')
-    method_name = 'iBayesLRule_first_order_informative2d';
+    method_name = 'iBayesLRule_first_order_BNN';
     option='first';
     [mixWeights,mixMeans,mixPrecs] = mix_gauss_iBayesLRule(option,likelihoodFun,trueC,nrSteps,init_m,init_P,floor(nrSteps/50), 50, 0.006, 0);
 
