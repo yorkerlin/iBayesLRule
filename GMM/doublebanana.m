@@ -46,7 +46,6 @@ true_dist.theta2= theta2;
 true_dist.Z =Z;
 
 num_com = nd1*nd2-1;
-% set up KL divergence stuff
 normPostDens = @(x1,x2)exp(logPostDensQuad(x1,x2)-mzr-log(normconst));
 logNormPostDens = @(x1,x2)(logPostDensQuad(x1,x2)-mzr-log(normconst));
 
@@ -94,9 +93,6 @@ for i=1:num_com
     myLogDens=@(x1,x2)log(myDens(x1,x2));
 
     %LDens=@(x)Get_Conditional_Log_Prbs(x,log(mixWeights),mixMeans,mixPrecs);
-
-    % calculate R-squared
-    %R2(i)=CalcRsquared(myDens,normPostDens,-2.0,2.0,-1.0,2.0)
 
     % contour plot approximation
     subplot(nd1,nd2,i)
