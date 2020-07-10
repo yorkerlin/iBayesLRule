@@ -83,7 +83,7 @@ for i=1:num_com
     myDens=@(x1,x2)DensApproximation(x1,x2,mixWeights,mixMeans,mixPrecs);
     myLogDens=@(x1,x2)log(myDens(x1,x2));
 
-    LDens=@(x)Get_Conditional_Log_Prbs(x,log(mixWeights),mixMeans,mixPrecs);
+    %LDens=@(x)Get_Conditional_Log_Prbs(x,log(mixWeights),mixMeans,mixPrecs);
 
     % contour plot approximation
     subplot(3,3,i)
