@@ -9,7 +9,7 @@ Code for ICML 2020 paper on [Handling the Positive-Definite Constraint in the Ba
   * To add a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/) about  MoG approximation (See Appendix J)
  ![](./plots/MOG.png) <br />  
  examples of GMM:
- [star](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/star.m), [double-banana](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/doublebanana.m), [Laplace](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/laplace.m), [BNN](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/bnn.m), [mix of Studnet-Ts]
+ [star](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/star.m), [double-banana](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/doublebanana.m), [Laplace](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/laplace.m), [BNN](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/bnn.m), [mix of Studnet-Ts](https://github.com/yorkerlin/iBayesLRule/blob/master/GMM/mixT_demo20d.m)
   * To add a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/) about Gamma approximation (See Appendix F)
   * To add a Python [implementation](https://github.com/yorkerlin/iBayesLRule/) for the Adam-like update using a factorized/diagonal Gaussian approximation (See Appendix E.3)
 
