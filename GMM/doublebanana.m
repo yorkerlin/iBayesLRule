@@ -46,8 +46,6 @@ true_dist.theta2= theta2;
 true_dist.Z =Z;
 
 num_com = nd1*nd2-1;
-normPostDens = @(x1,x2)exp(logPostDensQuad(x1,x2)-mzr-log(normconst));
-logNormPostDens = @(x1,x2)(logPostDensQuad(x1,x2)-mzr-log(normconst));
 
 callback= @(iter,post_dist)dummy(iter,post_dist);
 

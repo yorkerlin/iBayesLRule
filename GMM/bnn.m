@@ -42,11 +42,7 @@ true_dist.theta1= theta1;
 true_dist.theta2= theta2;
 true_dist.Z =Z;
 
-
-
 num_com = 8;
-normPostDens = @(x1,x2)exp(logPostDensQuad(x1,x2)-mzr-log(normconst));
-logNormPostDens = @(x1,x2)(logPostDensQuad(x1,x2)-mzr-log(normconst));
 
 
 likelihoodFun = @(xSampled,iter)evaluate_likelihood2(xSampled,iter,logPostDens,gradfun);
