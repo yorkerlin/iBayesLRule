@@ -105,7 +105,7 @@ for i=1:num_com
     results{nrComponents,3} = Z;
 end
 
-file_name = sprintf('informative2d.mat')
+file_name = sprintf('bnn.mat')
 save(file_name, 'results','true_dist');
 
 ww = 15;

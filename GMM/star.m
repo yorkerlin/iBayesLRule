@@ -9,7 +9,6 @@ method='iBayesLRule_first_order'
 %method='bbvi_first_order'
 d=2;
 
-%init_P = eye(d)*1e-3; %initial precision should be small to avoid stuck in one mode
 init_P = eye(d); %initial precision should be small to avoid stuck in one mode
 init_m = zeros(d,1);
 
@@ -67,16 +66,10 @@ likelihood =@(xSampled,iter)Log_Mix_Gauss(xSampled,p_logMixWeights,p_mixMeans,p_
 q_nrComponents=10;
 nrSteps = 1e4;
 preIt=floor(nrSteps/50); %plot every preIt iterations
-%stepSize = 0.001;%cvi
-%stepSize = 0.01;%cvi
 stepSize = 0.01;%bbvi
-decay_mix = 0.05;%cvi %update for mixing weight
+decay_mix = 0.05;%update for mixing weight
 nrSamples = 50; %MC samples
 dataset_name = sprintf('toy-%d',d);
-
-%[q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_cvi_new(likelihood,q_nrComponents,50,init_m,init_P,preIt,nrSamples,0.0005, 0.01);
-%init_post.mixMeans = q_mixMeans;
-%init_post.mixPrecs = q_mixPrecs;
 
 disp('running')
 
@@ -84,25 +77,20 @@ disp('running')
 switch method
 case {'cvi_hess'}
     option='hess'
-    %[q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_cvi_new(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback, init_post);
     [q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_cvi_new(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback);
 case {'bbvi_hess'}
     option='hess'
-    %[q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_bbvi(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback, init_post);
     [q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_bbvi(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback);
 
 case {'bbvi_first_order'}
     option='first'
-    %[q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_bbvi(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback, init_post);
     [q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_bbvi(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback);
 
 case {'iBayesLRule_hess'}
     option='hess'
-    %[q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_iBayesLRule(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback, init_post);
     [q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_iBayesLRule(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback);
 case {'iBayesLRule_first_order'}
     option='first'
-    %[q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_iBayesLRule(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback, init_post);
     [q_mixWeights,q_mixMeans,q_mixPrecs] = mix_gauss_iBayesLRule(option,likelihood,q_nrComponents,nrSteps,init_m,init_P,preIt, nrSamples, stepSize, decay_mix, dataset_name,callback);
 otherwise
     error('no such method')
@@ -113,8 +101,6 @@ ww = 15;
 hh = 12;
 set(gcf, 'PaperPosition', [0 0 ww hh]); %Position plot at left hand corner with width 5 and height 5.
 set(gcf, 'PaperSize', [ww hh]); %Set the paper to have width 5 and height 5.
-%set(gca, 'Color', 'none'); % Sets axes background
-%set(gcf, 'Color', 'none'); % Sets axes background
 export_fig(method_name, '-pdf')
 %saveas(gca, method_name, 'pdf')
 
