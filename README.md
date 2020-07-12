@@ -1,6 +1,6 @@
 Code for ICML 2020 paper on [Handling the Positive-Definite Constraint in the Bayesian Learning Rule](https://arxiv.org/abs/2002.10060)
 <br />  
-Efficient Riemannian/Natural Gradient Variational Inference
+We propose an Efficient Riemannian/Natural Gradient Variational Inference method
 * To-do List:
   * Added [slides](https://github.com/yorkerlin/iBayesLRule/blob/master/slides.pdf) of the talk 
   * To add a [link] of the ICML talk
