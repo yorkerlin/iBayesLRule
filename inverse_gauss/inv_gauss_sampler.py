@@ -99,6 +99,9 @@ def neg_logq(param, z):
 def entropy(param,sampler):
     alpha = param[0]
     beta = param[1]
+    #note1: d_alpha E_q [ log q(z|alpha) ] =  E_q [ d_alpha log q(z|alpha) ] + \int log q(z|alpha) d_alpha q(z|alpha) dz
+    #note2: E_q [ d_alpha log q(z|alpha) ] = 0
+    #we only approximate \int log q(z|alpha) d_alpha q(z|alpha) dz, which is why we use the stop gradient function (getval()).
     return np.sum( neg_logq( getval(param), myinv_gauss(alpha,beta,sampler) ) )
 
 
@@ -110,7 +113,7 @@ gx = value_and_grad(fx)
 ginvx = value_and_grad(finv_x)
 gentropy = value_and_grad(fent_x)
 
-d = 500 #use d MC samples (set d to be large so that we can see the MC approximation gives unbaised estimation)
+d = 500 #use d MC samples (set d to be large so that we can see the MC approximation gives a unbaised estimation)
 print('Using %d MC samples'% d)
 alpha = 2.0*np.ones((d,1))
 beta = 4.0*np.ones((d,1))
