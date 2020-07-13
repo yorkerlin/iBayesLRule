@@ -97,11 +97,12 @@ def neg_logq(param, z):
     return -lp
 
 def entropy(param,sampler):
+    #note1: d_eta E_q [ log q(x|eta) ] =  E_q [ d_eta log q(x|eta) ] + \int log q(x|eta) d_eta q(x|eta) dx
+    #note2: E_q [ d_eta log q(x|eta) ] = 0
     alpha = param[0]
     beta = param[1]
-    #note1: d_alpha E_q [ log q(z|alpha) ] =  E_q [ d_alpha log q(z|alpha) ] + \int log q(z|alpha) d_alpha q(z|alpha) dz
-    #note2: E_q [ d_alpha log q(z|alpha) ] = 0
-    #we only approximate \int log q(z|alpha) d_alpha q(z|alpha) dz, which is why we use the stop gradient function (getval()).
+    #Approximate \int log q(x|eta) d_eta q(x|eta) dx, which is re-paramtrizable as [d_x log q(x|eta) ] [d_eta x], where x ~ q(x|eta)
+    # It is the reason why we use the stop gradient function at log q(x| getval(alpha) ).
     return np.sum( neg_logq( getval(param), myinv_gauss(alpha,beta,sampler) ) )
 
 
