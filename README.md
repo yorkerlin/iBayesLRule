@@ -7,7 +7,7 @@ We propose an Efficient Riemannian/Natural Gradient Variational Inference method
   * Added a Python [implementatoin](https://github.com/yorkerlin/iBayesLRule/tree/master/inverse_gauss/) of the implicit reparameterization gradient for inverse Gaussian distribution (See Appendix H.1)
   * Added a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/tree/master/gauss) about Gaussian approximation (See Appendix E) 
  ![](./plots/blr2d_full.png) 
-  * Added a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/) about  MoG approximation (See Appendix J)
+  * Added a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/tree/master/MoG) about  MoG approximation (See Appendix J)
  ![](./plots/MOG.png) <br />  
  examples of MoG approximation:
  [star](https://github.com/yorkerlin/iBayesLRule/blob/master/MoG/star.m), [double-banana](https://github.com/yorkerlin/iBayesLRule/blob/master/MoG/doublebanana.m), [Laplace](https://github.com/yorkerlin/iBayesLRule/blob/master/MoG/laplace.m), [BNN](https://github.com/yorkerlin/iBayesLRule/blob/master/MoG/bnn.m), [mixture of Ts](https://github.com/yorkerlin/iBayesLRule/blob/master/MoG/mixT_demo20d.m)
