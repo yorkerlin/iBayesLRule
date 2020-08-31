@@ -127,8 +127,8 @@ for i=1:(nrSteps)
         L = mixUpperCholPrecs{c}';
         mixMeans{c} = mixMeans{c} + lr1*(L'\(L\gmu(:,c)));
         right = L\gV(:,:,c);
-        R = L' - (lr1*2.0)*right;
-        mixPrecs{c} = (mixPrecs{c} + R'*R)/2; %mixPrecs{c} = mixPrecs{c} - lr1*(2.0*gV(:,:,c)) + (lr1*lr1*2.0)*(right'*right);
+        U = L' - (lr1*2.0)*right;
+        mixPrecs{c} = (mixPrecs{c} + U'*U)/2; %mixPrecs{c} = mixPrecs{c} - lr1*(2.0*gV(:,:,c)) + (lr1*lr1*2.0)*(right'*right);
     end
 
     lr2 = lr1*decay_mix;
