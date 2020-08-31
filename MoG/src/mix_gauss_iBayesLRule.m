@@ -72,8 +72,6 @@ for i=1:(nrSteps)
     end
     grad_lik = grad;
 
-    %grad = num2cell(grad, [1])';
-
     log_sxxWeights = logMixWeights';%log( q(w) )
 
     mode = 1;
@@ -82,11 +80,9 @@ for i=1:(nrSteps)
         %           = E_{q(z)} [ q(w|z)/q(w) (log p(z,x) - log q(z))  ]
         [log_sxyWeights2 sig2]= logMatrixProdv3(logRBindicator-log_sxxWeights-log(nrSamples),lpDens-logTotalSampDens');
         g_m_w2 = exp(log_sxyWeights2) .* sig2;
-        g_m_w2(sig2==0) = 0;%looks this is better
     else
         [log_sxyWeights3 sig3]= logMatrixProdv3(logRBindicator-log_sxxWeights,lpDens-logTotalSampDens');
         g_m_w2 = exp(log_sxyWeights3) .* sig3;
-        g_m_w2(sig3==0) = 0;
         tmpp = mean(lpDens-logTotalSampDens')*sum(logRBindicator-log_sxxWeights,2);%C by 1
         assert( nrSamples > 1)
         g_m_w2 = (g_m_w2 - tmpp) / (nrSamples-1); %a better/worse estimator ?
@@ -131,7 +127,7 @@ for i=1:(nrSteps)
         L = mixUpperCholPrecs{c}';
         mixMeans{c} = mixMeans{c} + lr1*(L'\(L\gmu(:,c)));
         right = L\gV(:,:,c);
-        R = mixUpperCholPrecs{c} - (lr1*2.0)*right;
+        R = L' - (lr1*2.0)*right;
         mixPrecs{c} = (mixPrecs{c} + R'*R)/2; %mixPrecs{c} = mixPrecs{c} - lr1*(2.0*gV(:,:,c)) + (lr1*lr1*2.0)*(right'*right);
     end
 
