@@ -102,7 +102,7 @@ for i=1:(nrSteps)
 
     % log p(x) - log q(x)
     %sxyWeights = matrixProd(logRBindicator,(lpDens-logTotalSampDens')/nrSamples);
-    [log_sxyWeights sig]= logMatrixProdv2(logRBindicator,(lpDens-logTotalSampDens')/nrSamples);
+    [log_sxyWeights sig]= logMatrixProdv3(logRBindicator,(lpDens-logTotalSampDens')/nrSamples);
 
     %compute gradient w.r.t. log \pi
     g_log_pi = exp(log_sxyWeights - log_sxxWeights + logMixWeights') .* sig;

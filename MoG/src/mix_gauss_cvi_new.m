@@ -76,7 +76,7 @@ for i=1:(nrSteps)
 
     %sxyWeights = matrixProd(logRBindicator,(lpDens-logTotalSampDens')/nrSamples);
     %%sxyWeights = E_{q(w|z)} [ log p(z,x) - log q(z)  ]
-    [log_sxyWeights sig]= logMatrixProdv2(logRBindicator,(lpDens-logTotalSampDens')/nrSamples);
+    [log_sxyWeights sig]= logMatrixProdv3(logRBindicator,(lpDens-logTotalSampDens')/nrSamples);
 
     g_m_w2 = exp(log_sxyWeights  - log_sxxWeights) .* sig;
     g_m_w2(sig==0) = 0;
