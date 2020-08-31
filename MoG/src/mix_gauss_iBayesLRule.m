@@ -56,6 +56,7 @@ for i=1:(nrSteps)
     %xSampled = z ~ q(z)
     %logSampDensPerComp = log( q(z|w) )
 
+
     [logRBindicator,logTotalSampDens] = CombineMixtureComponents(logMixWeights,logSampDensPerComp);
     %logRBindicator = log( q(w|z) )
     %logTotalSampDens =log( q(z) )
@@ -75,12 +76,22 @@ for i=1:(nrSteps)
 
     log_sxxWeights = logMixWeights';%log( q(w) )
 
-    %sxyWeights = matrixProd(logRBindicator,(lpDens-logTotalSampDens')/nrSamples);
-    %%sxyWeights = E_{q(w|z)} [ log p(z,x) - log q(z)  ]
-    [log_sxyWeights sig]= logMatrixProdv2(logRBindicator,(lpDens-logTotalSampDens')/nrSamples);
+    mode = 1;
+    if mode==1
+        %sxyWeights = E_{q(z)} [ q(z|w)/q(z) (log p(z,x) - log q(z))  ]
+        %           = E_{q(z)} [ q(w|z)/q(w) (log p(z,x) - log q(z))  ]
+        [log_sxyWeights2 sig2]= logMatrixProdv3(logRBindicator-log_sxxWeights-log(nrSamples),lpDens-logTotalSampDens');
+        g_m_w2 = exp(log_sxyWeights2) .* sig2;
+        g_m_w2(sig2==0) = 0;%looks this is better
+    else
+        [log_sxyWeights3 sig3]= logMatrixProdv3(logRBindicator-log_sxxWeights,lpDens-logTotalSampDens');
+        g_m_w2 = exp(log_sxyWeights3) .* sig3;
+        g_m_w2(sig3==0) = 0;
+        tmpp = mean(lpDens-logTotalSampDens')*sum(logRBindicator-log_sxxWeights,2);%C by 1
+        assert( nrSamples > 1)
+        g_m_w2 = (g_m_w2 - tmpp) / (nrSamples-1); %a better/worse estimator ?
+    end
 
-    g_m_w2 = exp(log_sxyWeights  - log_sxxWeights) .* sig;
-    g_m_w2(sig==0) = 0;
     g_m_w2= g_m_w2';
 
     Precs = reshape(cell2mat(mixPrecs'),k,k,[]);
