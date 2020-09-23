@@ -2,8 +2,7 @@ Code for ICML 2020 paper on [Handling the Positive-Definite Constraint in the Ba
 <br />  
 We propose an Efficient Riemannian/Natural Gradient Variational Inference method
 * To-do List:
-  * Added [slides](https://github.com/yorkerlin/iBayesLRule/blob/master/slides.pdf) of the talk 
-  * Added a [Youtube Video](https://www.youtube.com/watch?v=nu1hT-LExFg) of the ICML talk
+  * Added [slides](https://github.com/yorkerlin/iBayesLRule/blob/master/slides.pdf) and a [Youtube Link](https://www.youtube.com/watch?v=nu1hT-LExFg) of the ICML talk
   * Added a Python [implementatoin](https://github.com/yorkerlin/iBayesLRule/tree/master/inverse_gauss/) of the implicit reparameterization gradient for inverse Gaussian distribution (See Appendix H.1)
   * Added a Matlab [implementation](https://github.com/yorkerlin/iBayesLRule/tree/master/gauss) about Gaussian approximation (See Appendix E) 
  ![](./plots/blr2d_full.png) 
